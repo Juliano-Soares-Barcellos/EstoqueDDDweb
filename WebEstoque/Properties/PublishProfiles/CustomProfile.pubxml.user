@@ -10,34 +10,34 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.pdb">
-      <publishTime>09/10/2013 16:29:20</publishTime>
+      <publishTime>10/09/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/Aplication.dll">
-      <publishTime>10/18/2024 11:50:05</publishTime>
+      <publishTime>10/18/2024 16:56:21</publishTime>
     </File>
     <File Include="bin/Aplication.pdb">
-      <publishTime>10/18/2024 11:50:05</publishTime>
+      <publishTime>10/18/2024 16:56:21</publishTime>
     </File>
     <File Include="bin/BouncyCastle.Crypto.dll">
-      <publishTime>08/11/2018 10:03:48</publishTime>
+      <publishTime>11/08/2018 10:03:48</publishTime>
     </File>
     <File Include="bin/Dapper.dll">
-      <publishTime>03/06/2024 15:02:48</publishTime>
+      <publishTime>06/03/2024 15:02:48</publishTime>
     </File>
     <File Include="bin/Domain.dll">
-      <publishTime>10/18/2024 11:50:05</publishTime>
+      <publishTime>10/18/2024 16:56:21</publishTime>
     </File>
     <File Include="bin/Domain.pdb">
-      <publishTime>10/18/2024 11:50:05</publishTime>
+      <publishTime>10/18/2024 16:56:21</publishTime>
     </File>
     <File Include="bin/Entities.dll">
-      <publishTime>10/18/2024 08:37:41</publishTime>
+      <publishTime>10/18/2024 16:56:21</publishTime>
     </File>
     <File Include="bin/Entities.pdb">
-      <publishTime>10/18/2024 08:37:41</publishTime>
+      <publishTime>10/18/2024 16:56:21</publishTime>
     </File>
     <File Include="bin/Google.Protobuf.dll">
       <publishTime>02/16/2020 13:04:38</publishTime>
@@ -46,34 +46,34 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>02/16/2020 08:02:46</publishTime>
     </File>
     <File Include="bin/Infra.dll">
-      <publishTime>10/18/2024 11:50:05</publishTime>
+      <publishTime>10/18/2024 16:56:22</publishTime>
     </File>
     <File Include="bin/Infra.pdb">
-      <publishTime>10/18/2024 11:50:05</publishTime>
+      <publishTime>10/18/2024 16:56:22</publishTime>
     </File>
     <File Include="bin/K4os.Compression.LZ4.dll">
-      <publishTime>07/03/2019 22:59:30</publishTime>
+      <publishTime>03/07/2019 22:59:30</publishTime>
     </File>
     <File Include="bin/K4os.Compression.LZ4.Streams.dll">
-      <publishTime>07/03/2019 22:59:32</publishTime>
+      <publishTime>03/07/2019 22:59:32</publishTime>
     </File>
     <File Include="bin/K4os.Hash.xxHash.dll">
-      <publishTime>07/03/2019 20:39:02</publishTime>
+      <publishTime>03/07/2019 20:39:02</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>10/31/2023 15:00:18</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
-      <publishTime>03/05/2023 22:41:40</publishTime>
+      <publishTime>05/03/2023 22:41:40</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>04/11/2022 19:09:46</publishTime>
+      <publishTime>11/04/2022 19:09:46</publishTime>
     </File>
     <File Include="bin/MySql.Data.dll">
       <publishTime>09/18/2020 18:21:54</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>03/08/2023 07:09:56</publishTime>
+      <publishTime>08/03/2023 07:09:56</publishTime>
     </File>
     <File Include="bin/Ninject.dll">
       <publishTime>05/27/2022 15:01:24</publishTime>
@@ -94,7 +94,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>10/20/2023 20:35:40</publishTime>
     </File>
     <File Include="bin/pt-br/System.Web.Optimization.resources.dll">
-      <publishTime>02/11/2014 15:28:42</publishTime>
+      <publishTime>11/02/2014 15:28:42</publishTime>
     </File>
     <File Include="bin/pt-br/System.Web.Razor.resources.dll">
       <publishTime>10/20/2023 20:35:42</publishTime>
@@ -151,10 +151,10 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>02/15/2022 05:21:10</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
-      <publishTime>10/05/2021 00:47:54</publishTime>
+      <publishTime>05/10/2021 00:47:54</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
-      <publishTime>10/05/2021 00:49:46</publishTime>
+      <publishTime>05/10/2021 00:49:46</publishTime>
     </File>
     <File Include="bin/roslyn/Microsoft.Managed.Core.CurrentVersions.targets">
       <publishTime>02/15/2022 05:33:08</publishTime>
@@ -289,7 +289,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>02/11/2014 16:26:04</publishTime>
+      <publishTime>11/02/2014 16:26:04</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>10/20/2023 20:33:48</publishTime>
@@ -307,13 +307,13 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>09/18/2020 18:20:50</publishTime>
     </File>
     <File Include="bin/WebActivatorEx.dll">
-      <publishTime>10/05/2016 13:11:52</publishTime>
+      <publishTime>05/10/2016 13:11:52</publishTime>
     </File>
     <File Include="bin/WebEstoque.dll">
-      <publishTime>10/18/2024 11:50:06</publishTime>
+      <publishTime>10/18/2024 16:56:22</publishTime>
     </File>
     <File Include="bin/WebEstoque.pdb">
-      <publishTime>10/18/2024 11:50:06</publishTime>
+      <publishTime>10/18/2024 16:56:22</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 14:57:34</publishTime>
@@ -568,7 +568,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>10/14/2024 09:09:34</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/18/2024 11:34:10</publishTime>
+      <publishTime>10/18/2024 14:55:22</publishTime>
     </File>
     <File Include="Views/Movimento/Create.cshtml">
       <publishTime>10/17/2024 15:49:06</publishTime>
@@ -583,13 +583,13 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>10/17/2024 15:26:12</publishTime>
     </File>
     <File Include="Views/Movimento/Index.cshtml">
-      <publishTime>10/18/2024 10:44:27</publishTime>
+      <publishTime>10/18/2024 15:01:33</publishTime>
     </File>
     <File Include="Views/Produto/Edit.cshtml">
       <publishTime>10/10/2024 08:36:31</publishTime>
     </File>
     <File Include="Views/Produto/Index.cshtml">
-      <publishTime>09/10/2024 16:45:37</publishTime>
+      <publishTime>10/09/2024 16:45:37</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/12/2024 09:57:54</publishTime>
@@ -601,10 +601,10 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>09/27/2024 15:13:39</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>09/10/2024 16:59:33</publishTime>
+      <publishTime>10/09/2024 16:59:33</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/01/2024 09:02:15</publishTime>
+      <publishTime>01/10/2024 09:02:15</publishTime>
     </File>
   </ItemGroup>
 </Project>

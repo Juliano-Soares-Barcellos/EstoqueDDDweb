@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Entities.Entities.Produto>
+﻿@model IEnumerable<Entities.Entities.MovimentoEstoque>
 @{
     ViewBag.Title = "Index";
 }
@@ -15,7 +15,7 @@
     </div>
 }
 
-<div class="container col-md-12 pt-3 ">
+<div class="container col-md-12 pt-4 ">
 
     <div class="row d-flex justify-content-between m-0 col-md-12 ">
         <div style="background:#ffffff; height:100%;padding-left:0px" class="col-md-4">
@@ -40,7 +40,7 @@
                 <div>
 
                     <h6 class="card-title">Valor Unitario</h6>
-                    <p class="card-text" id="Unitario">R$ 21,00</p>
+                    <h4 class="card-text text-center"style="color: #d49c00;" id="Valor">R$ 21,00</h4>
                 </div>
             </div>
         </div>
@@ -51,8 +51,8 @@
                     <span style="font-size: 4rem;" class="fa-duotone fa-solid fa-boxes-stacked text-white"></span>
                 </div>
                 <div>
-                    <h6 class="card-title">Quantidade</h6>
-                    <h4 class="card-text " id="Quantidade" style="color:#43bb00"></h4>
+                    <h6 class="card-title">Quantidade do Produto</h6>
+                    <h4 class="card-text text-center" id="Quantidade" style="color:#43bb00"></h4>
                 </div>
             </div>
         </div>
@@ -64,51 +64,49 @@
     <table class="table container col-md-12  w-100" id="Tabela">
         <thead>
             <tr>
-                <th class="col-md-2">
-                    @Html.DisplayNameFor(model => model.CodProduto)
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto.CodProduto)
                 </th>
-                <th class="col-md-2">
-                    @Html.DisplayNameFor(model => model.NomeProduto)
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto.NomeProduto)
                 </th>
-                <th class="col-md-2">
-                    @Html.DisplayNameFor(model => model.Estoque)
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto.Estoque)
                 </th>
-                <th class="col-md-2">
-                    @Html.DisplayNameFor(model => model.CodProduto)
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorUnitario)
                 </th>
-                <th class="col-md-2">
-                    @Html.DisplayNameFor(model => model.NomeProduto)
+                <th>
+                    @Html.DisplayNameFor(model => model.Fornecedor.NomeFornecedor)
                 </th>
-                <th class="col-md-2">
-                    @Html.DisplayNameFor(model => model.Estoque)
-                </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CodProduto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeProduto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estoque)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeProduto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estoque)
-                    <td>
-                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" data-url="@Url.Action("Edit", new { id=item.CodProduto , nome=item.NomeProduto})">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-                    </td>
-                </tr>
-
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Produto.CodProduto)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Produto.NomeProduto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Produto.Estoque)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorUnitario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fornecedor.NomeFornecedor)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" data-url="@Url.Action("Edit", new { id=item.Produto.CodProduto, nome=item.Produto.NomeProduto})">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -147,10 +145,12 @@
     // Itera sobre os produtos com JavaScript
     var nome = produtos.nome;
     var estoque = produtos.Quantidade;
+    var valor = produtos.valor;
     console.log(estoque);
         // Atualiza os campos do formulário com os valores do produto
         document.getElementById('Produto').innerText = nome;
         document.getElementById('Quantidade').innerText = estoque;
+        document.getElementById('Valor').innerText ="R$: " + valor;
 
 
 
