@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Entities.Entities.Produto>
+@{
+    ViewBag.Title = "Index";
+}
+<h2 class="text-center my-4 fw-bold display-6">Resumo de Itens em Estoque</h2>
+
+<div class="container  text-center d-flex justify-content-center">
+    <table class="table table-striped table-bordered table-hover  table-sm w-75">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CodProduto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeProduto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estoque)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodProduto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeProduto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estoque)
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" data-url="@Url.Action("Edit", new { id = item.CodProduto })">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <!-- Adicione modal-dialog-centered -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Editar Produto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- O conteúdo será carregado aqui via AJAX -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Quando o modal for aberto, carrega o conteúdo via AJAX
+    var editModal = document.getElementById('editModal');
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var url = button.getAttribute('data-url'); // URL do formulário
+
+        var modalBody = editModal.querySelector('.modal-body');
+
+        // Faz uma requisição AJAX para carregar o conteúdo do formulário
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                modalBody.innerHTML = html; // Insere o formulário no modal
+            });
+    });
+
+</script>
+

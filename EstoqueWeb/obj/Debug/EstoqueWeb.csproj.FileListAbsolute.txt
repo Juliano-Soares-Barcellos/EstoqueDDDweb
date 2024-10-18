@@ -1,0 +1,2 @@
+C:\Users\julianob\source\repos\Estoque\EstoqueWeb\obj\Debug\EstoqueWeb.csprojAssemblyReference.cache
+C:\Users\julianob\source\repos\Estoque\EstoqueWeb\obj\Debug\EstoqueWeb.csproj.CoreCompileInputs.cache

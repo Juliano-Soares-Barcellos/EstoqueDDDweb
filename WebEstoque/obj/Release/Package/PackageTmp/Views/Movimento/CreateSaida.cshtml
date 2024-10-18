@@ -1,0 +1,65 @@
+﻿@model Entities.Entities.MovimentoEstoque
+
+@{
+    ViewBag.Title = "CreateSaida";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+  
+    <div class="form col-md-12">
+        <div class="d-flex ">
+
+            <div class="input-group mb-3">
+                @Html.EditorFor(model => model.Produto.NomeProduto, new { htmlAttributes = new { @class = "form-control", @placeholder = "Produto", @aria_label = "Produto", @aria_describedby = "basic-addon2" } })
+            </div>
+
+            <div class="input-group mb-3">
+                @Html.EditorFor(model => model.Quantidade, new { htmlAttributes = new { @class = "form-control", @placeholder = "Quantidade", @aria_label = "Quantidade", @aria_describedby = "basic-addon2" } })
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <div class="col-md-12 d-flex justify-content-center">
+                <label style="font-size:20px;margin-right: 2%;padding-right: 2%;">Data : </label>
+                @Html.TextBoxFor(model => model.DataMovimentacao, new { @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(model => model.DataMovimentacao, "", new { @class = "text-danger" })
+                <div class="d-flex col-md-2">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary text-center " style="margin-left: 20%;padding-left: 20%;" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.FkFornecedor, new { Value = 2 })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Fk_tipomovimentacao, new { Value = 2 })
+            </div>
+        </div>
+
+
+
+    </div>
+}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

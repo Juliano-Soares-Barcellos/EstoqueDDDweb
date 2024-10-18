@@ -1,0 +1,8 @@
+C:\Users\julianob\source\repos\Estoque\Entities\bin\Release\Entities.dll
+C:\Users\julianob\source\repos\Estoque\Entities\bin\Release\Entities.pdb
+C:\Users\julianob\source\repos\Estoque\Entities\bin\Release\System.ComponentModel.Annotations.dll
+C:\Users\julianob\source\repos\Estoque\Entities\obj\Release\Entities.csprojAssemblyReference.cache
+C:\Users\julianob\source\repos\Estoque\Entities\obj\Release\Entities.csproj.CoreCompileInputs.cache
+C:\Users\julianob\source\repos\Estoque\Entities\obj\Release\Entities.csproj.CopyComplete
+C:\Users\julianob\source\repos\Estoque\Entities\obj\Release\Entities.dll
+C:\Users\julianob\source\repos\Estoque\Entities\obj\Release\Entities.pdb

@@ -1,0 +1,596 @@
+﻿
+<div class="col-md-12 d-flex justify-content-center align-items-center pt-5">
+    <div id="formContainer" class="shadow p-3 bg-white rounded-3 col-md-11 d-flex justify-content-between align-items-center flex-wrap">
+        <div class="col-md-3 d-flex flex-column mt- justify-content-center">
+            <label for="initDate" class="">Mês Inicial</label>
+            <input type="month" id="initDate" class="rounded border-1 w-100 w-md-auto">
+        </div>
+
+        <div class="col-md-3 d-flex flex-column  justify-content-center">
+            <label for="fimDate" >Mês Final</label>
+            <input type="month" id="fimDate" class="rounded border-1 w-100 w-md-auto">
+        </div>
+
+        <div class="col-md-3 d-flex mt-4 flex-column justify-content-center">
+            <select id="tipoMov" class="form-select w-100 w-md-auto text-center p-0">
+                <option>Entrada</option>
+                <option>Saída</option>
+            </select>
+        </div>
+
+        <div class="mt-4 col-md-2 d-flex flex-column justify-content-center">
+            <button id="updateChart"style="width:78%" class="btn btn-primary w-md-auto align-items-center">Atualizar Gráfico</button>
+        </div>
+    </div>
+</div>
+
+<!-- Canvas para os gráficos -->
+<div class="container mt-5 h-100">
+    <div class="row justify-content-around">
+        <div class="col-md-5 col-sm-12 mb-5 shadow p-3 mb-5 bg-white rounded-3">
+            <h4 class="text-center text-dark">Total por valores</h4>
+            <canvas id="estoqueChart" class="clickable-chart"></canvas>
+        </div>
+        <div class="col-md-5 col-sm-12 mb-5 shadow p-3 mb-5 bg-white rounded-3">
+            <h4 class="text-center text-dark">Total por valores Mês a Mês</h4>
+            <canvas id="estoquechart3" class="clickable-chart"></canvas>
+        </div>
+    </div>
+
+    <div class="row justify-content-around">
+        <div class="col-md-5 col-sm-12 mb-5 shadow p-3 mb-5 bg-white rounded-3">
+            <h4 class="text-center text-dark">Total de Quantidades</h4>
+            <canvas id="estoquechart4" class="clickable-chart"></canvas>
+        </div>
+        <div class="col-md-5 col-sm-12 mb-5 shadow p-3 mb-5 bg-white rounded-3">
+            <h4 class="text-center text-dark">Total de Quantidades Mês a Mês</h4>
+            <canvas id="estoquechart2" class="clickable-chart"></canvas>
+        </div>
+    </div>
+
+    <!-- Modais para os gráficos ampliados -->
+    <div id="modalEstoqueChart" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px;">
+            <!-- Adicionada a classe modal-dialog-centered -->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <canvas id="modalChart1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalEstoquechart2" class="modal fade mt-5" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px;">
+            <!-- Adicionada a classe modal-dialog-centered -->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <canvas id="modalChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalEstoquechart3" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width:1000px;">
+            <!-- Adicionada a classe modal-dialog-centered -->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <canvas id="modalChart3"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalEstoquechart4" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="max-width: 1000px;">
+            <!-- Adicionada a classe modal-dialog-centered -->
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <canvas id="modalChart4"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chegada de Produtos</h5>
+            </div>
+            <div class="modal-body">
+                Conteúdo do Modal
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Saida de Produtos</h5>
+            </div>
+            <div class="modal-body">
+                Conteúdo do Modal
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    var estoqueChart, estoquechart2, estoquechart3, estoquechart4;
+
+    // Função para desenhar o gráfico de valores totais
+    function drawChart(dates, data) {
+        var ctx = document.getElementById('estoqueChart').getContext('2d');
+
+        var datasets = data.map(item => ({
+            label: item.NomeProduto,
+            data: item.valor,
+            unit: item.valorUnit,
+            fill: false,
+            borderColor: getRandomColor(),
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderWidth: 1,
+            tension: 0.1,
+            quantidades: item.Quantidades,
+            nomeProduto: item.NomeProduto
+        }));
+
+        if (estoqueChart) {
+            estoqueChart.destroy();
+        }
+
+        estoqueChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: datasets
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var dataset = tooltipItem.dataset;
+                                var dataIndex = tooltipItem.dataIndex;
+                                var valorTot = dataset.data[dataIndex];
+                                var quantidade = dataset.quantidades[dataIndex];
+                                var valunit = dataset.unit[dataIndex];
+                                var produto = dataset.nomeProduto;
+
+                                return [
+                                    `Nome: ${produto}`,
+                                    `Quantidade: ${quantidade}`,
+                                    `Valor unitario: R$${valunit}`,
+                                    `Valor Total: R$${valorTot}`
+                                ];
+                            }
+                        },
+                        backgroundColor: '#fff',
+                        bodyColor: '#000',
+                        titleColor: '#000',
+                        bodySpacing: 10,
+                        borderColor: '#ccc',
+                        borderWidth: 1,
+                        padding: 10
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Data'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Valor'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Função para desenhar o gráfico de quantidades compradas
+    function drawChartQuantidade(dates, data) {
+        var ctx = document.getElementById('estoquechart2').getContext('2d');
+
+        var datasets = data.map(item => ({
+            label: item.NomeProduto,
+            data: item.Quantidades,
+            unit: item.valorUnit,
+            fill: false,
+            borderColor: getRandomColor(),
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderWidth: 1,
+            tension: 0.1,
+            valorTot: item.valor,
+            nomeProduto: item.NomeProduto
+        }));
+
+        if (estoquechart2) {
+            estoquechart2.destroy();
+        }
+
+        estoquechart2 = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: datasets
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var dataset = tooltipItem.dataset;
+                                var dataIndex = tooltipItem.dataIndex;
+                                var quantidade = dataset.data[dataIndex];
+                                var valorTot = dataset.valorTot[dataIndex];
+                                var valunit = dataset.unit[dataIndex];
+                                var produto = dataset.nomeProduto;
+
+                                return [
+                                    `Nome: ${produto}`,
+                                    `Quantidade: ${quantidade}`,
+                                    `Valor unitario: R$${valunit}`,
+                                    `Valor Total: R$${valorTot}`
+                                ];
+                            }
+                        },
+                        backgroundColor: '#fff',
+                        bodyColor: '#000',
+                        titleColor: '#000',
+                        bodySpacing: 10,
+                        borderColor: '#ccc',
+                        borderWidth: 1,
+                        padding: 10
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Data'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Quantidade'
+                        },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Função para desenhar o gráfico comparativo mês a mês
+    function drawChartMesQtd(data) {
+        var ctx = document.getElementById('estoquechart4').getContext('2d');
+
+        // Cria o dataset usando os valores totais de cada mês
+        var datasets = [{
+            label: 'Quatidades',
+            data: data.map(item => item.Quantidades),  // Array de valores totais por mês
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }];
+
+        // Se o gráfico já existe, destrói para recriar
+        if (estoquechart4) {
+            estoquechart4.destroy();
+        }
+
+        // Cria o gráfico
+        estoquechart4 = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.data),  // Array de datas (meses)
+                datasets: datasets
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var valorTotal = tooltipItem.raw; // Obtém o valor total do item
+                                var dataLabel = tooltipItem.label; // Data correspondente
+
+                                return [
+                                    `Data: ${dataLabel}`,
+                                    `Quantidade Comprada : ${valorTotal}`
+                                ];
+                            }
+                        },
+                        backgroundColor: '#fff',
+                        bodyColor: '#000',
+                        titleColor: '#000',
+                        bodySpacing: 10,
+                        borderColor: '#ccc',
+                        borderWidth: 1,
+                        padding: 10
+                    }
+                }
+            }
+        });
+    }
+
+    function drawChartMes(data) {
+        var ctx = document.getElementById('estoquechart3').getContext('2d');
+
+        // Cria o dataset usando os valores totais de cada mês
+        var datasets = [{
+            label: 'Valor Total',
+            data: data.map(item => item.valorTotal),  // Array de valores totais por mês
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }];
+
+        // Se o gráfico já existe, destrói para recriar
+        if (estoquechart3) {
+            estoquechart3.destroy();
+        }
+
+        // Cria o gráfico
+        estoquechart3 = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.data),  // Array de datas (meses)
+                datasets: datasets
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                var valorTotal = tooltipItem.raw; // Obtém o valor total do item
+                                var dataLabel = tooltipItem.label; // Data correspondente
+
+                                return [
+                                    `Data: ${dataLabel}`,
+                                    `Valor Total: R$${valorTotal}`
+                                ];
+                            }
+                        },
+                        backgroundColor: '#fff',
+                        bodyColor: '#000',
+                        titleColor: '#000',
+                        bodySpacing: 10,
+                        borderColor: '#ccc',
+                        borderWidth: 1,
+                        padding: 10
+                    }
+                }
+            }
+        });
+    }
+
+    // Função para carregar os gráficos inicialmente
+    document.addEventListener('DOMContentLoaded', function () {
+        var initialData = @Html.Raw(ViewBag.DadosIniciais);
+
+        // Exibe os gráficos com os dados iniciais
+        drawChart(initialData.alldates, initialData.products);
+        drawChartQuantidade(initialData.alldates, initialData.products);
+
+
+
+        //drawChartMes(ultimasDatas, produtosUltimasDatas);
+        var comparacaoDasDatas = [initialData.alldates[initialData.alldates.length - 2], initialData.alldates[initialData.alldates.length - 1]];
+        // Calcular o total gasto na primeira e última data
+        var totalPrimeiraData = initialData.products.reduce((total, produto) => {
+            return total + (produto.valor && produto.valor[0] ? produto.valor[0] : 0);
+        }, 0);
+
+        var totalUltimaData = initialData.products.reduce((total, produto) => {
+            return total + (produto.valor && produto.valor[produto.valor.length - 1] ? produto.valor[produto.valor.length - 1] : 0);
+        }, 0);
+
+        var dadosParaGrafico = [
+            { data: comparacaoDasDatas[0], valorTotal: totalPrimeiraData },
+            { data: comparacaoDasDatas[1], valorTotal: totalUltimaData }
+        ];
+
+        drawChartMes(dadosParaGrafico);
+
+        console.log(dadosParaGrafico);
+
+
+
+        var totalPrimeiraDataQtd = initialData.products.reduce((total, produto) => {
+            return total + (produto.Quantidades && produto.Quantidades[0] ? produto.Quantidades[0] : 0);
+        }, 0);
+
+        var totalUltimaDataQtd = initialData.products.reduce((total, produto) => {
+            return total + (produto.Quantidades && produto.Quantidades[produto.Quantidades.length - 1] ? produto.Quantidades[produto.Quantidades.length - 1] : 0);
+        }, 0);
+
+        var dadosParaGraficoQtd = [
+            { data: comparacaoDasDatas[0], Quantidades: totalPrimeiraDataQtd },
+            { data: comparacaoDasDatas[1], Quantidades: totalUltimaDataQtd }
+        ];
+        console.log(dadosParaGraficoQtd);
+        drawChartMesQtd(dadosParaGraficoQtd);
+    }
+    );
+
+
+document.getElementById('updateChart').addEventListener('click', function () {
+    var initDate = document.getElementById('initDate').value;
+    var fimDate = document.getElementById('fimDate').value;
+    var tipoMov = document.getElementById('tipoMov').value;
+
+    if (initDate && fimDate) {
+        $.ajax({
+            url: '@Url.Action("ListarEstoque_DatasEntradas_saida", "Movimento")',
+            type: 'GET',
+            data: { tipo: tipoMov, init: initDate, fim: fimDate },
+            success: function (response) {
+                // Verifica se há produtos na resposta
+                if (!response.products || response.products.length === 0) {
+                    alert('Nenhum produto encontrado para as datas selecionadas.');
+                    return;
+                }
+
+                // Atualiza o gráfico total
+                drawChart(response.alldates, response.products);
+
+                // Atualiza o gráfico de quantidades
+                drawChartQuantidade(response.alldates, response.products);
+
+                // Filtra os produtos que estão dentro do intervalo de datas
+                var comparacaoDasDatas = [response.alldates[0], response.alldates[response.alldates.length -1]];
+                // Calcular o total gasto na primeira e última data
+                var totalPrimeiraData = response.products.reduce((total, produto) => {
+                    return total + (produto.valor && produto.valor[0] ? produto.valor[0] : 0);
+                }, 0);
+
+                var totalUltimaData = response.products.reduce((total, produto) => {
+                    return total + (produto.valor && produto.valor[produto.valor.length - 1] ? produto.valor[produto.valor.length - 1] : 0);
+                }, 0);
+
+                var dadosParaGrafico = [
+                    { data: comparacaoDasDatas[0], valorTotal: totalPrimeiraData },
+                    { data: comparacaoDasDatas[1], valorTotal: totalUltimaData }
+                ];
+
+                console.log(dadosParaGrafico);
+
+                drawChartMes(dadosParaGrafico);
+
+                var totalPrimeiraDataQtd = response.products.reduce((Quantidades, produto) => {
+                    return Quantidades + (produto.Quantidades && produto.Quantidades[0] ? produto.Quantidades[0] : 0);
+                }, 0);
+
+                var totalUltimaDataQtd = response.products.reduce((Quantidades, produto) => {
+                    return Quantidades + (produto.Quantidades && produto.Quantidades[produto.Quantidades.length - 1] ? produto.Quantidades[produto.Quantidades.length - 1] : 0);
+                }, 0);
+
+                var dadosParaGraficoQtd = [
+                    { data: comparacaoDasDatas[0], Quantidades: totalPrimeiraDataQtd},
+                    { data: comparacaoDasDatas[1], Quantidades: totalUltimaDataQtd}
+                ];
+
+                drawChartMesQtd(dadosParaGraficoQtd);
+
+            },
+            error: function () {
+                alert('Ocorreu um erro ao buscar os dados. Por favor, tente novamente.');
+            }
+        });
+    } else {
+        alert('Por favor, selecione um intervalo de datas válido.');
+    }
+});
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Função para abrir os modais ao clicar nos gráficos
+        function openModal(chartId, modalId, chartName) {
+            const ctx = document.getElementById(chartId).getContext('2d');
+
+            const graficosData = {
+                estoqueChart: estoqueChart.data,
+                estoquechart2: estoquechart2.data,
+                estoquechart3: estoquechart3.data,
+                estoquechart4: estoquechart4.data,
+            };
+
+            const modalChart = new Chart(ctx, {
+                type: 'line',
+                data: graficosData[chartName], // Acesse os dados corretos
+                options: {
+                    scales: {
+                        x: { title: { display: true, text: 'Data' } },
+                        y: { title: { display: true, text: 'Valor' }, beginAtZero: true }
+                    }
+                }
+            });
+
+            $(modalId).modal('show');
+
+            $(modalId).on('hidden.bs.modal', function () {
+                modalChart.destroy();
+            });
+        }
+
+        document.querySelectorAll('.clickable-chart').forEach(chart => {
+            chart.addEventListener('click', function () {
+                if (this.id === 'estoqueChart') {
+                    openModal('modalChart1', '#modalEstoqueChart', 'estoqueChart');
+                } else if (this.id === 'estoquechart2') {
+                    openModal('modalChart2', '#modalEstoquechart2', 'estoquechart2');
+                } else if (this.id === 'estoquechart4') {
+                    openModal('modalChart4', '#modalEstoquechart4', 'estoquechart4');
+                } else if (this.id === 'estoquechart3') {
+                    openModal('modalChart3', '#modalEstoquechart3', 'estoquechart3');
+                }
+            });
+        });
+
+</script>
+
+<script>
+    var editModal = document.getElementById('editModal');
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var url = button.getAttribute('data-url'); // URL do formulário
+
+        var modalBody = editModal.querySelector('.modal-body');
+
+        // Carrega o conteúdo do formulário via AJAX
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                modalBody.innerHTML = html;
+
+                // Após carregar o conteúdo no modal, associar o evento ao campo
+                var pressed = modalBody.querySelector('#Convertendovirgula');
+                if (pressed) {
+                    pressed.addEventListener('input', function (evt) {
+                        var valor = pressed.value;
+                        // Substitui o ponto por vírgula
+                        pressed.value = valor.replace('.', ',');
+                    });
+                }
+            });
+    });
+    var edit = document.getElementById('edit');
+    edit.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var url = button.getAttribute('data-url'); // URL do formulário
+
+        var modalBody = edit.querySelector('.modal-body');
+
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                modalBody.innerHTML = html;
+            });
+    });
+
+</script>

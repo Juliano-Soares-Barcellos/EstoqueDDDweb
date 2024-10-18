@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Infra.Configuracao.DbConexao">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuracao\DbConexao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Infra.Configuracao.StringConnection.ConnectionStringDb">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuracao\StringConnection\ConnectionStringDb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Infra.Generic.RepositoryGeneric&lt;t&gt;" Collapsed="true">
+    <Position X="10.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAIAAEAAAAAAAAAAAAIAQAAAAAA=</HashCode>
+      <FileName>Generic\RepositoryGeneric.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.362" />
+  </Class>
+  <Class Name="Infra.Repository.MovimentoEstoqueRepository" Collapsed="true">
+    <Position X="6.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAgAIEAAAAAABAAAAAAAQAAAAACBAAAAAAAQACAAAA=</HashCode>
+      <FileName>Repository\EstoqueRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.321" />
+  </Class>
+  <Class Name="Infra.Repository.ProdutoRepository" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAACAAAAAABAEAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Repository\ProdutoRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.175" />
+  </Class>
+  <Interface Name="Domain.Interface.IEstoque">
+    <Position X="6" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Interface.IProduto">
+    <Position X="12.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Domain.Interface.Generica.IGenerica&lt;t&gt;" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.IDisposable" Collapsed="true">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

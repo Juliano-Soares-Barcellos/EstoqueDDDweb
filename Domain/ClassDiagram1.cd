@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Domain.Interface.service.ProdutoService">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAACAAAAAABAAEAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>service\ProdutoService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.696" />
+  </Class>
+  <Class Name="Domain.Interface.service.MovimentoEstoqueService">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAEAAAkQAAAAQACAAAIAECAAEAAAAIAAACAgA=</HashCode>
+      <FileName>service\MovimentoEstoqueService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="1.477" />
+  </Class>
+  <Interface Name="Domain.Interface.IEstoque">
+    <Position X="13" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAgAAEAAAAAABAAAAAAAAAAAAACBAAAAAAAQACAAAA=</HashCode>
+      <FileName>Interface\IEstoque.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Interface.Generica.IGenerica&lt;t&gt;" Collapsed="true">
+    <Position X="13.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Interface\Generica\IGenerica.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Interface.IProduto">
+    <Position X="11" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAABAEAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Interface\IProduto.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Interface.InterfaceService.IProdutoService">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAACAAAAAABAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interface\InterfaceService\IProdutoService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Interface.InterfaceService.IMovimentoEstoqueService">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAEAAAkQAAAAAACAAAAAECAAEAAAAAAAACAAA=</HashCode>
+      <FileName>Interface\InterfaceService\IMovimentoEstoqueService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
