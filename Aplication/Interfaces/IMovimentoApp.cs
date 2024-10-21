@@ -11,11 +11,12 @@ namespace Aplication.Interfaces
     {
         Task <string> AddMovSaida(MovimentoEstoque mov);
         Task<List<MovimentoEstoque>> ListarEstoqueEntradasOuSaidas(string TipoMovimento);
-        Task<List<MovimentoEstoque>> ListarEstoqueTotalHistorico();
+        Task<List<MovimentoEstoque>> ListarHistorico();
         Task <string>UpdateQtd(MovimentoEstoque objeto);
         Task <MovimentoEstoque> SelectData(MovimentoEstoque objeto);
         Task<List<MovimentoEstoque>> ListarEstoque_DatasEntradas_saida(int tipo, DateTime init, DateTime fim);
         Task<List<MovimentoEstoque>> ListarProdutosEstoque();
+        Task<List<MovimentoEstoque>> ProcurarPeloNome(string nomeProduto);
 
 
     }

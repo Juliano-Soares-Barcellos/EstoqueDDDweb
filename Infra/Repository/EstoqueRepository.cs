@@ -80,7 +80,6 @@ namespace Infra.Repository
             {
                 using (var connection = con.Conexao())
                 {
-                    await connection.OpenAsync();
 
                     var resultados = await connection.QueryAsync<MovimentoEstoque, Fornecedor, Produto, tipomovimentacao, MovimentoEstoque>
                     (
@@ -116,34 +115,35 @@ namespace Infra.Repository
             }
         }
 
-        public async Task<List<MovimentoEstoque>> ListarProdutosTotalHistorico()
+        public async Task<List<MovimentoEstoque>> ListarProdutosTotalHistorico(DateTime dataInit, DateTime dataFim)
         {
             try
             {
                 using (var connection = con.Conexao())
                 {
-                    await connection.OpenAsync();
 
                     var resultados = await connection.QueryAsync<MovimentoEstoque, Fornecedor, Produto, tipomovimentacao, MovimentoEstoque>
                     (
-                            @"select * from movimentacaoestoque 
-                      left join fornecedor on movimentacaoestoque.FkFornecedor = fornecedor.CodFornecedor 
-                      inner join produto on movimentacaoestoque.FkProduto = produto.CodProduto 
-                      inner join tipomovimentacao on movimentacaoestoque.FkTipoMov = tipomovimentacao.CodMov",
-
-                        (movimentoEstoque, Fornecedor, produto, tipomovimentacao) =>
+                        @"SELECT * 
+                  FROM movimentacaoestoque 
+                  LEFT JOIN fornecedor ON movimentacaoestoque.FkFornecedor = fornecedor.CodFornecedor 
+                  INNER JOIN produto ON movimentacaoestoque.FkProduto = produto.CodProduto 
+                  INNER JOIN tipomovimentacao ON movimentacaoestoque.FkTipoMov = tipomovimentacao.CodMov 
+                  WHERE DataMovimentacao BETWEEN @dataInit AND @dataFim;",
+                        (movimentoEstoque, fornecedor, produto, tipomovimentacao) =>
                         {
-                            movimentoEstoque.FkFornecedor = Fornecedor.CodFornecedor;
+                            movimentoEstoque.FkFornecedor = fornecedor.CodFornecedor;
                             movimentoEstoque.FkProduto = produto.CodProduto;
                             movimentoEstoque.Fk_tipomovimentacao = tipomovimentacao.CodMov;
-                            movimentoEstoque.Fornecedor = Fornecedor;
+                            movimentoEstoque.Fornecedor = fornecedor;
                             movimentoEstoque.Produto = produto;
                             movimentoEstoque.tipomovimentacao = tipomovimentacao;
                             return movimentoEstoque;
                         },
-                        splitOn: "CodFornecedor,CodProduto, CodMov"
+                        new { dataInit, dataFim }, 
+                        splitOn: "CodFornecedor,CodProduto,CodMov"
                     );
-                    connection.Close();
+
                     return resultados.ToList();
                 }
             }
@@ -152,18 +152,55 @@ namespace Infra.Repository
                 Console.WriteLine($"Erro ao listar produtos comprados: {ex.Message}");
                 return new List<MovimentoEstoque>();
             }
-            finally
+        }
+        public async Task<List<MovimentoEstoque>> ProcurarPeloNome(string nomeProduto)
+        {
+            try
             {
-                await con.Conexao().CloseAsync();
+                using (var connection = con.Conexao())
+                {
+                    var query = @"
+                  SELECT * 
+                  FROM movimentacaoestoque 
+                  LEFT JOIN fornecedor ON movimentacaoestoque.FkFornecedor = fornecedor.CodFornecedor 
+                  INNER JOIN produto ON movimentacaoestoque.FkProduto = produto.CodProduto 
+                  INNER JOIN tipomovimentacao ON movimentacaoestoque.FkTipoMov = tipomovimentacao.CodMov 
+                  WHERE produto.nomeProduto LIKE @nomeProduto";
+
+                    var resultados = await connection.QueryAsync<MovimentoEstoque, Fornecedor, Produto, tipomovimentacao, MovimentoEstoque>
+                    (
+                        query,
+                        (movimentoEstoque, fornecedor, produto, tipomovimentacao) =>
+                        {
+                            movimentoEstoque.FkFornecedor = fornecedor.CodFornecedor;
+                            movimentoEstoque.FkProduto = produto.CodProduto;
+                            movimentoEstoque.Fk_tipomovimentacao = tipomovimentacao.CodMov;
+                            movimentoEstoque.Fornecedor = fornecedor;
+                            movimentoEstoque.Produto = produto;
+                            movimentoEstoque.tipomovimentacao = tipomovimentacao;
+                            return movimentoEstoque;
+                        },
+                        new { nomeProduto = $"%{nomeProduto}%" },
+                        splitOn: "CodFornecedor,CodProduto,CodMov"
+                    );
+
+                    return resultados.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao listar produtos: {ex.Message}");
+                return new List<MovimentoEstoque>();
             }
         }
+
+
         public async Task<List<MovimentoEstoque>> ListarEstoque_DatasEntradas_saida(int tipo, DateTime Datainit, DateTime fim)
         {
             try
             {
                 using (var connection = con.Conexao())
                 {
-                    await connection.OpenAsync();
 
                     var resultados = await connection.QueryAsync<MovimentoEstoque, Fornecedor, Produto, tipomovimentacao, MovimentoEstoque>
                     (

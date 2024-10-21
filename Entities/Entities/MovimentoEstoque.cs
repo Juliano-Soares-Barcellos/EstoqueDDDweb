@@ -14,7 +14,7 @@ namespace Entities.Entities
         public int CodMovimentacao { get; set; }
 
         [Column("DataMovimentacao")] 
-        [Display(Name = "Data da Modificação no Estoque")]
+        [Display(Name = "Data")]
         [Required(ErrorMessage = "Obrigatória")]
         public DateTime DataMovimentacao { get; set; }
 

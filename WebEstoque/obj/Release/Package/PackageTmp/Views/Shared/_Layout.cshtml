@@ -20,9 +20,9 @@
                             <h3>@Html.ActionLink("Estoque", "Index", "Home", null, new { @class = "nav-link pb-3 text-white", Styles = "font-size:25px" })</h3>
                             <hr class="text-white" />
                         </div>
-                        <div class="nav-item dropdown">
+                        <div class="btn-group dropright">
                             <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
-                                Cadastro
+                                Cadastro 
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <div class="text-center sub" data-bs-toggle="modal" data-bs-target="#editModal" data-url="@Url.Action("Create", "Movimento")">Registrar Entrada</div>
@@ -30,19 +30,22 @@
                             </div>
                             <hr class="text-white" />
                         </div>
-                        <div class="nav-item dropdown">
+                        
+                        <div class="btn-group dropright">
                             <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
-                                DashBoard
-                            </a>
-                            <div class=" dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                                @Html.ActionLink("Comparativo Mês a Mês sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                @Html.ActionLink("Comparativo Entre dois meses sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                @Html.ActionLink("Comparativo Mês a Mês sobre a Quantidade", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                @Html.ActionLink("Comparativo Entre dois meses sobre a Quantidade", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                @Html.ActionLink("Todos", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                DashBoard     </a>
+                         
+                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    @Html.ActionLink("Comparativo Mês a Mês sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Comparativo Entre dois meses sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Comparativo Mês a Mês sobre a Quantidade", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Comparativo Entre dois meses sobre a Quantidade", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Todos", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Tabela de Entrada Saida", "TabelaMovimento", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                </div>
+                                <hr class="text-white" />
                             </div>
-                            <hr class="text-white" />
-                        </div>
+                      
                         <div></div>
                     </div>
                 </div>
@@ -55,7 +58,10 @@
             <button class="navbar-toggler text-left" type="button" onclick="toggleSidebar()" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <h1 style="padding-left:2%" class="navbar-brand text-white" id="Titulo">EstoqueControle</h1>
+            <div class="navbar-band text-white d-flex justify-content-between">
+                <h3 style="padding-left:2%" class="" id="Titulo">EstoqueControler</h3>
+                <div class="fa-solid fa-hand-holding-dollar align-content-end p-2"></div>
+            </div>
         </div>
     </nav>
 

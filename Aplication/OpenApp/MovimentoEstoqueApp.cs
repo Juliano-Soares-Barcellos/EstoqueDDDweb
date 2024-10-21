@@ -55,8 +55,12 @@ namespace Aplication.OpenApp
         {
             return await _imovimentoEstoqueService.ListarProdutosEstoque();
         }
+        public async Task<List<MovimentoEstoque>> ProcurarPeloNome(string nomeProduto)
+        {
+            return await _imovimentoEstoqueService.ProcurarPeloNome(nomeProduto);
+        }
 
-        public async Task<List<MovimentoEstoque>> ListarEstoqueTotalHistorico()
+        public async Task<List<MovimentoEstoque>> ListarHistorico()
         {
             return await _imovimentoEstoqueService.ListarHistorico();
         }

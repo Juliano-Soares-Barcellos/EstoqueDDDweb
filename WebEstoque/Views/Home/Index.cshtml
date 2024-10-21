@@ -112,8 +112,6 @@
     </table>
 </div>
 <!-- Modal -->
-
-
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg ">
         <div class="modal-content">
@@ -142,19 +140,16 @@
 <script>
     var produtos = @Html.Raw(ViewBag.DadosdoProduto);
 
-    // Itera sobre os produtos com JavaScript
     var nome = produtos.nome;
     var estoque = produtos.Quantidade;
     var valor = produtos.valor;
     console.log(estoque);
-        // Atualiza os campos do formulário com os valores do produto
         document.getElementById('Produto').innerText = nome;
         document.getElementById('Quantidade').innerText = estoque;
         document.getElementById('Valor').innerText ="R$: " + valor;
 
 
 
-    // Evento ao mostrar o modal de Entrada de Produtos
     var editModal = document.getElementById('editModal');
     editModal.addEventListener('show.bs.modal', function (event) {
         var button = event.relatedTarget;

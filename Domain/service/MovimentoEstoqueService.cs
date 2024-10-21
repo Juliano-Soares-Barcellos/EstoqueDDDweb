@@ -105,7 +105,11 @@ namespace Domain.Interface.service
 
         public async Task<List<MovimentoEstoque>> ListarHistorico()
         {
-            return await movimentoEstoque.ListarProdutosTotalHistorico();
+            return await movimentoEstoque.ListarProdutosTotalHistorico(DateTime.Now.AddMonths(-10), DateTime.Now);
+        }
+        public async Task<List<MovimentoEstoque>> ProcurarPeloNome(string nomeProduto)
+        {
+            return await movimentoEstoque.ProcurarPeloNome(nomeProduto);
         }
 
         public async Task<List<MovimentoEstoque>> ListarEstoque_DatasEntradas_saida(int tipo, DateTime init, DateTime fim)

@@ -90,8 +90,8 @@ namespace WebEstoque.Controllers
             {
                 Console.WriteLine(e.Message);
                 TempData["ErrorMessage"] = $"Erro ao salvar :{e.Message}";
-               
-               
+
+
             }
 
             return RedirectToAction("Index", "Home");
@@ -192,6 +192,30 @@ namespace WebEstoque.Controllers
             }
         }
 
+        public async Task<ActionResult> TabelaMovimento()
+        {
+            List<MovimentoEstoque> Movimento = await iestoque.Listar();
+            return View(Movimento);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ListarEstoque_DatasEntradas_saidaTabelaMov(string pesquisa, string tipo, DateTime init, DateTime fim)
+        {
+            List<MovimentoEstoque> Movimento = null;
+            int Entrada_Saida = tipo == "Entrada" ? 1 : 2;
+            Movimento = await _iestoqueWeb.ListarEstoque_DatasEntradas_saida(Entrada_Saida, init.AddDays(1), fim.AddDays(1));
+            return Json(new { products = Movimento }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ProcurarProdutoPorNome(string pesquisa)
+        {
+            List<MovimentoEstoque> Movimento = null;
+            Movimento = await _iestoqueWeb.ProcurarPeloNome(pesquisa);
+
+            return Json(new { products = Movimento }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public async Task<JsonResult> ListarEstoque_DatasEntradas_saida(string tipo, DateTime init, DateTime fim)
         {
@@ -199,13 +223,11 @@ namespace WebEstoque.Controllers
 
             List<MovimentoEstoque> Movimento = await _iestoqueWeb.ListarEstoque_DatasEntradas_saida(Entrada_Sainda, init.AddDays(01), fim.AddDays(DateTime.Now.Day));
 
-            // Pega todas as datas únicas no intervalo, formatadas
             var alldates = Movimento.Select(m => m.DataMovimentacao.ToString("MM/yy"))
                                     .Distinct()
                                     .OrderBy(d => d)
                                     .ToList();
 
-            // Agrupa os produtos e mapeia suas quantidades para cada data
             var products = Movimento
                 .GroupBy(m => m.Produto.NomeProduto)
                 .Select(g => new
@@ -221,7 +243,6 @@ namespace WebEstoque.Controllers
                   .Where(m => m.DataMovimentacao.ToString("MM/yy") == date)
                  .Sum(m => (int?)m.ValorUnitario * m.Quantidade ?? 0)).ToList(),
                 }).ToList();
-            // Retorna o JSON com as datas e os produtos
             return Json(new { alldates, products }, JsonRequestBehavior.AllowGet);
         }
     }

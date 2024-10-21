@@ -11,7 +11,7 @@ namespace Entities.Entities
     {
         [Display(Name = "tipo Movimento")]
         public int CodMov { get; set; }
-        [Display(Name = "Entrada ou Saida de Materiais")]
+        [Display(Name = "Entrada ou Saida")]
         public string Descricao { get; set; }
 
      

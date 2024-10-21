@@ -14,7 +14,7 @@ namespace Entities.Entities
         [Display(Name = "Código")]
         public int CodProduto { get; set; }
 
-        [Display(Name = "Nome do Produto")]
+        [Display(Name = "Produto")]
         [MaxLength(255)]
         public string NomeProduto { get; set; }
 

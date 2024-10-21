@@ -48,10 +48,14 @@ namespace WebEstoque.Repository
         {
             return await _imov.ListarProdutosEstoque();
         }
+        public async Task<List<MovimentoEstoque>> ProcurarPeloNome(string nomeProduto)
+        {
+            return await _imov.ProcurarPeloNome(nomeProduto);
+        }
 
         public async Task<List<MovimentoEstoque>> Listar()
         {
-          return await _imov.ListarEstoqueTotalHistorico();
+          return await _imov.ListarHistorico();
         }
 
         public async  Task<List<MovimentoEstoque>> ListarEstoque_DatasEntradas_saida(int tipo, DateTime init, DateTime fim)
@@ -74,5 +78,6 @@ namespace WebEstoque.Repository
         {
             await _imov.UpdateQtd(objeto);
         }
+
     }
 }

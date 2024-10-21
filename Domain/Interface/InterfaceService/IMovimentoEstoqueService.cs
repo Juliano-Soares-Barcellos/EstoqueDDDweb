@@ -21,6 +21,6 @@ namespace Domain.Interface.InterfaceService
 
         Task<List<MovimentoEstoque>> ListarEstoque_DatasEntradas_saida(int tipo, DateTime init, DateTime fim);
         Task<List<MovimentoEstoque>> ListarProdutosEstoque();
-
+        Task<List<MovimentoEstoque>> ProcurarPeloNome(string nomeProduto);
     }
 }
