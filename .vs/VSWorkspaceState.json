@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebEstoque",
+    "\\WebEstoque\\Views\\Shared"
   ],
-  "SelectedNode": "\\Estoque.sln",
+  "SelectedNode": "\\WebEstoque\\Web.Debug.config",
   "PreviewInSolutionExplorer": false
 }
