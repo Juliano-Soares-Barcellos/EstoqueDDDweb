@@ -10,45 +10,41 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-color:#eeeaea">
+<body style="background-color:#cfcfcf">
     <nav id="sidebar" class="navbar navbar-expand-lg fixed-top d-flex flex-column h-100 col-md-4" style="width: 250px; background: radial-gradient(circle, rgba(187,0,0,0.961) 0%, rgba(45,54,62,0.989) 0%);">
-        <div class="container-fluid d-flex flex-column h-100">
-            <div class="d-flex flex-column h-100 w-100 ">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="navbar-nav me-auto mb-2 mb-lg-0 d-flex h-100 justify-content-around flex-column pt-5 ">
-                        <div class="nav-item text-center col-md-12">
-                            <h3>@Html.ActionLink("Estoque", "Index", "Home", null, new { @class = "nav-link pb-3 text-white", Styles = "font-size:25px" })</h3>
-                            <hr class="text-white" />
-                        </div>
-                        <div class="btn-group dropright">
-                            <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
-                                Cadastro 
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <div class="text-center sub" data-bs-toggle="modal" data-bs-target="#editModal" data-url="@Url.Action("Create", "Movimento")">Registrar Entrada</div>
-                                <div class="text-center sub" data-bs-toggle="modal" data-bs-target="#edit" data-url="@Url.Action("CreateSaida", "Movimento")">Entrega de Materiais</div>
-                            </div>
-                            <hr class="text-white" />
-                        </div>
-                        
-                        <div class="btn-group dropright">
-                            <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
-                                DashBoard</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    @Html.ActionLink("Comparativo Mês a Mês sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Comparativo Entre dois meses sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Comparativo Mês a Mês sobre a Quantidade", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Comparativo Entre dois meses sobre a Quantidade", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Todos", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Tabela de Entrada Saida", "TabelaMovimento", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                </div>
-                                <hr class="text-white" />
-                            </div>
-                      
-                        <div></div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav me-auto mb-2 mb-lg-0 d-flex h-100 justify-content-around flex-column pt-5 ">
+                <div class="nav-item text-center col-md-12">
+                    <h3>@Html.ActionLink("Estoque", "Index", "Home", null, new { @class = "nav-link pb-3 text-white", Styles = "font-size:25px" })</h3>
+                    <hr class="text-white" />
+                </div>
+                <div class="btn-group dropright">
+                    <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
+                        Cadastro
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <div class="text-center sub" data-bs-toggle="modal" data-bs-target="#editModal" data-url="@Url.Action("Create", "Movimento")">Registrar Entrada</div>
+                        <div class="text-center sub" data-bs-toggle="modal" data-bs-target="#edit" data-url="@Url.Action("CreateSaida", "Movimento")">Entrega de Materiais</div>
                     </div>
+                    <hr class="text-white" />
                 </div>
 
+                <div class="btn-group dropright">
+                    <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
+                        DashBoard
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        @Html.ActionLink("Comparativo Mês a Mês sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
+                        @Html.ActionLink("Comparativo Entre dois meses sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
+                        @Html.ActionLink("Comparativo Mês a Mês sobre a Quantidade", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
+                        @Html.ActionLink("Comparativo Entre dois meses sobre a Quantidade", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
+                        @Html.ActionLink("Todos", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
+                        @Html.ActionLink("Histórico do Estoque", "TabelaMovimento", "Movimento", null, new { @class = "dropdown-item Dash" })
+                    </div>
+                    <hr class="text-white" />
+                </div>
+
+                <div></div>
             </div>
         </div>
     </nav>
@@ -64,7 +60,7 @@
         </div>
     </nav>
 
-    <div class="body-content col-md-10" style="margin-top: 20px; margin-left: 250px;" id="sid">
+    <div class="col-md-12" style="margin-top:20px;padding-left:260px;" id="sid">
         @RenderBody()
         <hr />
         <footer class="text-center">
@@ -130,7 +126,7 @@
             font-size: 19px;
         }
     </style>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

@@ -25,7 +25,7 @@ namespace Foms.Repository
 
         public async Task<List<MovimentoEstoque>> obterTodos()
         {
-            return await _imovimentoApp.ListarEstoqueTotalHistorico();
+            return await _imovimentoApp.ListarProdutosEstoque();
         }
 
         public async Task<DataTable> RetornarTabela()

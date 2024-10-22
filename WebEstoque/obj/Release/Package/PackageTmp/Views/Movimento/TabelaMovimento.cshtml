@@ -1,64 +1,64 @@
 ﻿@model IEnumerable<Entities.Entities.MovimentoEstoque>
 
-    @{
+@{
     ViewBag.Title = "TabelaMovimento";
-    }
+}
 
-    <div class="col-md-12 d-flex justify-content-center align-items-center pt-3">
-        <div id="formContainer" class="shadow p-3 bg-white rounded-3 col-md-11 d-flex justify-content-between align-items-center flex-wrap">
-            <div class="col-md-3 d-flex flex-column mt- justify-content-center">
-                <label for="initDate" class="">Mês Inicial</label>
-                <input type="month" id="initDate" class="rounded border-1 w-100 w-md-auto">
-            </div>
-            <div class="col-md-3 d-flex flex-column  justify-content-center">
-                <label for="fimDate">Mês Final</label>
-                <input type="month" id="fimDate" class="rounded border-1 w-100 w-md-auto">
-            </div>
-            <div class="col-md-3 d-flex mt-4 flex-column justify-content-center">
-                <select id="tipoMov" class="form-select w-100 w-md-auto text-center p-0">
-                    <option>Entrada</option>
-                    <option>Saída</option>
-                </select>
-            </div>
-            <div class="mt-4 col-md-3 d-flex flex-column justify-content-center">
-                <button id="Atualiza" style="width:78%" class="btn btn-primary w-md-auto align-items-center">Pesquisar</button>
-            </div>
+<div class="col-md-12 d-flex justify-content-center align-items-center pt-3">
+    <div id="formContainer" class="shadow p-3 bg-white rounded-3 col-md-11 d-flex justify-content-between align-items-center flex-wrap">
+        <div class="col-md-3 d-flex flex-column mt- justify-content-center">
+            <label for="initDate" class="">Mês Inicial</label>
+            <input type="month" id="initDate" class="rounded opacity-50 w-100 w-md-auto text-center">
+        </div>
+        <div class="col-md-3 d-flex flex-column  justify-content-center">
+            <label for="fimDate">Mês Final</label>
+            <input type="month" id="fimDate" class="rounded opacity-50 w-100 w-md-auto text-center">
+        </div>
+        <div class="col-md-3 d-flex mt-4 flex-column justify-content-center">
+            <select id="tipoMov" class="form-select w-100 w-md-auto text-center p-0">
+                <option>Entrada</option>
+                <option>Saída</option>
+            </select>
+        </div>
+        <div class="mt-4 col-md-3 d-flex flex-column justify-content-center">
+            <button id="Atualiza" style="width:78%" class="btn btn-primary w-md-auto align-items-center">Pesquisar</button>
         </div>
     </div>
-    <div class="container col-md-12 text-center pt-4">
-        <div class="input-group position-relative">
-            <input id="searchInput" type="text" name="name" class="form-control rounded border-1 w-100 w-md-auto" placeholder="Pesquise o produto..." style="padding-left: 40px;" />
-            <span class="input-group-text position-absolute" style="left: 1px; top: 50%; transform: translateY(-50%); background: transparent; border: none;">
-                <i class="fa-solid fa-magnifying-glass" style="color: #aaa; margin-right: 20px;"></i>
-            </span>
-        </div>
+</div>
+<div class="container col-md-12 text-center pt-4">
+    <div class="input-group position-relative">
+        <input id="searchInput" type="text" name="name" class="form-control rounded border-1 w-100 w-md-auto" placeholder="Pesquise o produto..." style="padding-left: 40px;" />
+        <span class="input-group-text position-absolute" style="left: 1px; top: 50%; transform: translateY(-50%); background: transparent; border: none;">
+            <i class="fa-solid fa-magnifying-glass" style="color: #aaa; margin-right: 20px;"></i>
+        </span>
+    </div>
 
-        <table class="table container col-md-12  w-100" id="Tabela">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Produto.NomeProduto)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Quantidade)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DataMovimentacao)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ValorUnitario)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fornecedor.NomeFornecedor)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tipomovimentacao.Descricao)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+    <table class="table container col-md-12  w-100" id="Tabela">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto.NomeProduto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataMovimentacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorUnitario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fornecedor.NomeFornecedor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tipomovimentacao.Descricao)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Produto.NomeProduto)
@@ -79,34 +79,36 @@
                         @Html.DisplayFor(modelItem => item.tipomovimentacao.Descricao)
                     </td>
                 </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Chegada de Produtos</h5>
-                </div>
-                <div class="modal-body">
-                </div>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chegada de Produtos</h5>
+            </div>
+            <div class="modal-body">
             </div>
         </div>
     </div>
-    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Saida de Produtos</h5>
-                </div>
-                <div class="modal-body">
+</div>
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Saida de Produtos</h5>
+            </div>
+            <div class="modal-body">
 
-                </div>
             </div>
         </div>
     </div>
-    <script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
                 document.getElementById('searchInput').addEventListener('keydown', function (event) {
             // Verifica se a tecla pressionada é "Enter"
             if (event.key === 'Enter') {
@@ -131,7 +133,7 @@
                        // Limpa o corpo da tabela
 
                         // Verifica se há produtos na resposta
-                        
+
                         // Preenche a tabela com os produtos retornados
                         response.products.forEach(function (item) {
                             var dataMovimentacao = new Date(parseInt(item.DataMovimentacao.substr(6))).toLocaleDateString();
@@ -235,8 +237,5 @@
                     modalBody.innerHTML = html;
                 });
         });
-    </script>
+</script>
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

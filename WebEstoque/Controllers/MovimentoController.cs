@@ -53,9 +53,7 @@ namespace WebEstoque.Controllers
 
             return View(Movimento);
         }
-
-
-
+        
         // GET: Movimento/Create
         public ActionResult Create()
         {

@@ -5,4 +5,3 @@ C:\Users\julianob\source\repos\Estoque\Entities\obj\Debug\Entities.csproj.CoreCo
 C:\Users\julianob\source\repos\Estoque\Entities\obj\Debug\Entities.csproj.CopyComplete
 C:\Users\julianob\source\repos\Estoque\Entities\obj\Debug\Entities.dll
 C:\Users\julianob\source\repos\Estoque\Entities\obj\Debug\Entities.pdb
-C:\Users\julianob\source\repos\Estoque\Entities\obj\Debug\Entities.csprojAssemblyReference.cache

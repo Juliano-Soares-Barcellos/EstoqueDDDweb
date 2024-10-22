@@ -33,15 +33,14 @@
                         
                         <div class="btn-group dropright">
                             <a class="nav-link dropdown-toggle w-100 text-white text-center" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:25px">
-                                DashBoard     </a>
-                         
-                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                DashBoard</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     @Html.ActionLink("Comparativo Mês a Mês sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
                                     @Html.ActionLink("Comparativo Entre dois meses sobre o valor", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
                                     @Html.ActionLink("Comparativo Mês a Mês sobre a Quantidade", "Index", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Comparativo Entre dois meses sobre a Quantidade", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Comparativo Entre dois meses sobre a Quantidade", "Movimento", "Movimento", null, new { @class = "dropdown-item Dash" })
                                     @Html.ActionLink("Todos", "CreateSaida", "Movimento", null, new { @class = "dropdown-item Dash" })
-                                    @Html.ActionLink("Tabela de Entrada Saida", "TabelaMovimento", "Movimento", null, new { @class = "dropdown-item Dash" })
+                                    @Html.ActionLink("Histórico do Estoque", "TabelaMovimento", "Movimento", null, new { @class = "dropdown-item Dash" })
                                 </div>
                                 <hr class="text-white" />
                             </div>
